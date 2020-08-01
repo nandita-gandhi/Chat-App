@@ -47,12 +47,12 @@ class ChatFragment(private val user: PojoUser) : Fragment() {
         //fetching previous messages if any
         listenForMessages()
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        recyclerView.scrollToPosition(mAdapter.itemCount)
         val send: Button = view.findViewById(R.id.btnSend)
         send.setOnClickListener {
             //save message to firebase
             userMessageToFirebase()
             etMessage.text.clear()
+            recyclerView.scrollToPosition(mAdapter.itemCount - 1)
         }
         return view
     }
